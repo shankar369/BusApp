@@ -4,6 +4,7 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import NavBar from './NavBar';
 import RoutesList from './RoutesList';
+import RouteStopsList from './RouteStopsList';
 import { BrowserRouter , Route} from 'react-router-dom';
 import * as firebase from 'firebase';
 
@@ -69,6 +70,7 @@ state = {
                 <Route path='/routes' component={RoutesList} />    
                 <Route path='/signup' component={SignUp} />
                 <Route exact path = '/' component = {Login}/>  
+                <Route path = '/stopsList' component = {RouteStopsList}/>  
           </div>
         
         </BrowserRouter>
