@@ -4,7 +4,7 @@ button{
     padding : 3px;
 }
 
-#input-field{
+.input-field , .alert{
     width: 90%;
     margin : 3px;
     padding : 3px;

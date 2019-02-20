@@ -1,32 +1,31 @@
 import React, {Component} from 'react';
 import Button from "./Button";
-import { BrowserRouter , Route,NavLink} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 class NavBar extends Component{
 
+    constructor(){
+        super();
+        //this.routes = this.props.routes;
+        //console.log("busses",this.props.routes);
+    }
 
     render(){
         return(
 
                 <div>
-                   
-                    
-                
 
-
-                        <ul class="nav justify-content-end bg-primary">
-                            <li class="nav-item">{
+                        <ul className = "nav justify-content-end bg-primary">
+                            <li className = "nav-item nav-link mr-3">{
                             this.props.login ? (
-                                <a class="nav-link active pull-right" href="#"><NavLink to ="/routes"><Button name = "Routes List" ClassName = "pull-right btn btn-block btn-warning"/></NavLink></a>
+                                <NavLink to ="/routes"><Button name = "Routes List" ClassName = "pull-right btn btn-block btn-warning"/></NavLink>
                                  ) : (
-                                 <a className="nav-link active "><NavLink to ="/signup"><Button name = "Sign Up" ClassName = "pull-right btn btn-block btn-success"/></NavLink></a>
+                                 <NavLink to ="/signup"><Button name = "Sign Up" ClassName = "pull-right btn btn-block btn-success"/></NavLink>
                              )
                             }
                             </li>
                             
-                        </ul>
-                        
-                                  
+                        </ul>             
                 
                     
                 </div> 
