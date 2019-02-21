@@ -4,7 +4,8 @@ import InputField from "./InputField";
 import './Forms.css';
 import * as firebase from 'firebase';
 import ReactDOM from 'react-dom';
-
+import SignUp from './SignUp'
+import {withRouter} from 'react-router-dom';
 
 class LogIn extends Component {
 
@@ -22,13 +23,13 @@ class LogIn extends Component {
         .then(user => {
             
             console.log(user);
-                this.props.history.push('./routes')
+            this.props.history.push("./routes");
         }
         )
         .catch(err =>{ 
-            console.log(err);
+            console.log("Error in Login : ",err);
             const alert = (
-                <div class="alert alert-danger" role="alert">
+                <div className="alert alert-danger" role="alert">
                 Invalid User Details
               </div>
             )
@@ -40,9 +41,18 @@ class LogIn extends Component {
         }) 
     }
 
+    signUpUser = (e) => {
+        ReactDOM.render(<SignUp />,document.getElementById('root'))
+     }
+
+   
 
     render(){
         return (
+            <div>
+                <nav className="navbar bg-primary justify-content-between">
+                    <img className="navbar-nav" src={require("./logo.png")}/>
+                </nav>
             <div className = "d-flex justify-content-center align-items-center container" id = "form container">
                 
                 <div className = "col-md-6 col-sm-12 text-center">
@@ -60,10 +70,12 @@ class LogIn extends Component {
                     </div>
                     
                     <Button clickFunction = {this.signInUser} name="LOG IN" ClassName = "btn btn-success m3"/>
+                    <Button clickFunction = {this.signUpUser} name="SIGN UP" ClassName = "btn btn-info m3"/>
                 </center>
                   </form>
                   </div>
                 
+            </div>
             </div>
         );
 

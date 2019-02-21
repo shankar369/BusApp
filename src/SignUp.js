@@ -4,7 +4,7 @@ import InputField from './InputField'
 import './Forms.css';
 import * as firebase from "firebase";
 import ReactDOM from 'react-dom';
-
+import LogIn from './Login'
 
 
 class SignUp extends Component {
@@ -16,9 +16,9 @@ class SignUp extends Component {
         
     }
 
-    showError(alert){
+    showError(alert , Class){
         const Alert = (
-            <div class="alert alert-danger" role="alert">
+            <div className={Class} role="alert">
                 {alert}
             </div>
         )
@@ -35,7 +35,7 @@ class SignUp extends Component {
         const ConfirmPassword = document.querySelector("#SInput-ConfirmPassoword").value;
         
         if(password !== ConfirmPassword){
-            this.showError("Please check your password");
+            this.showError("Please check your password","alert alert-danger");
             
         }
         
@@ -45,15 +45,20 @@ class SignUp extends Component {
             promise
             .then(user => {
                 console.log(user);
-                this.props.history.push('./')
+                
+                ReactDOM.render(<LogIn />, document.getElementById('root'));
+                this.showError("Signed Up Successfully!","alert alert-success");
             })
             .catch(err =>{ 
                 console.log(err)
                 if(err.code === "auth/email-already-in-use"){
-                        this.showError("Email already in use");
+                        this.showError("Email already in use","alert alert-danger");
                   }
                 if(err.code === "auth/invalid-email"){
-                    this.showError("Invalid Email ID");
+                    this.showError("Invalid Email ID","alert alert-danger");
+                }
+                else{
+                    this.showError("Something went wrong","alert alert-danger");
                 }
             })
         }
@@ -64,6 +69,13 @@ class SignUp extends Component {
 
     render(){
         return (
+
+
+             <div>                                                                          
+                <nav className="navbar bg-primary justify-content-between">        
+                    <img className="navbar-nav" src={require("./logo.png")}/>
+                </nav> 
+
             <div className = "d-flex justify-content-center align-items-center container" id = "form container">
                 
                 <div className = "col-md-6 col-sm-12 text-center">
@@ -85,7 +97,7 @@ class SignUp extends Component {
                 </center>
                   </form>
                   </div>
-                
+             </div>   
             </div>
         )
     }
